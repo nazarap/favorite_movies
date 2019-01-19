@@ -6,9 +6,12 @@
   "author": "Nazar Oryschuk <nazar125125@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "webpack": "webpack --mode development"
+    "dev": "webpack --mode development --watch",
+    "build": "webpack --mode production",
+    "start": "npm run build & http-server ./dist -o"
   },
   "dependencies": {
+    "http-server": "^0.11.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   },
