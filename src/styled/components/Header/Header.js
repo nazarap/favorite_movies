@@ -15,21 +15,15 @@ export default styled.header`
         box-sizing: border-box;
         display: flex;
         flex-direction: row;
-        justify-content: flex-end;
-        
-        .user-info {
-          display: flex;
-          align-items: center;
-          
-          &__name {
-            color: #555;
-            margin: 0 10px;
-          }
-        }
+        justify-content: space-between;
+        align-items: center;
       }
       &__bnt {
         margin: 0 10px;
         height: 100%;
+      }
+      &__panel {
+        display: flex;
       }
     }
   `

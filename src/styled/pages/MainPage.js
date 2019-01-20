@@ -3,11 +3,15 @@ import styled from 'styled-components'
 import ContentPage from './common/ContentPage'
 
 export default styled(ContentPage)`
-  .acc-page {
-    &__genres {
-      padding: 20px;
-      box-sizing: border-box;
-      margin: 0 50px 50px 50px;
+  && {
+    .main-page {
+      &__content {
+        text-align: left;
+      }
+      &__search {
+        margin: 0 50px 50px 50px;
+        width: 30%;
+      }
     }
   }
 `

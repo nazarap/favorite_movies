@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import CenterPage from './CenterPage'
+import CenterPage from './common/CenterPage'
 
 export default styled(CenterPage)`
   .about-page {

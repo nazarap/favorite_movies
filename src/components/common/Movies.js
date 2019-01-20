@@ -10,17 +10,21 @@ const MovieList = ({ list, cols, count, ...props }) => {
   const takeCount = count || list.length
 
   return (
-    <Movies.List {...props}>
+    <Movies.List
+      className="movies"
+      {...props}>
       <GridList
-        className="acc-page__list"
+        className="movies__list"
         cellHeight="auto"
         cols={cols}
         spacing={10}>
-        {_take(list, takeCount).map((tile, index) => (
-          <GridListTile key={index}>
-            <MovieItem movie={tile}/>
-          </GridListTile>
-        ))}
+        {
+          _take(list, takeCount).map((movie, index) => (
+            <GridListTile key={index}>
+              <MovieItem movie={movie}/>
+            </GridListTile>
+          ))
+        }
       </GridList>
     </Movies.List>
   )

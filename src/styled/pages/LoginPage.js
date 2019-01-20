@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import CenterPage from './CenterPage'
+import CenterPage from './common/CenterPage'
 
 export default styled(CenterPage)`
   .login-page {
@@ -12,7 +12,7 @@ export default styled(CenterPage)`
       margin: 10px 0;
     }
     &__button {
-      display: block;
+      display: inline-block;
     }
     &__registration {
       margin: 10px 0;

@@ -1,0 +1,74 @@
+[
+  {
+    "header": "Literary genres",
+    "list": [
+      {"name": "Absurdist/surreal/whimsical", "id": 2}
+      ,{"name": "Action", "id": 3}
+      ,{"name": "Adventure", "id": 4}
+      ,{"name": "Comedy", "id": 5}
+      ,{"name": "Crime", "id": 6}
+      ,{"name": "Drama", "id": 7}
+      ,{"name": "Fantasy", "id": 8}
+      ,{"name": "Historical", "id": 9}
+      ,{"name": "Historical fiction", "id": 10}
+      ,{"name": "Horror", "id": 11}
+      ,{"name": "Magical realism", "id": 12}
+      ,{"name": "Mystery", "id": 13}
+      ,{"name": "Paranoid Fiction", "id": 14}
+      ,{"name": "Philosophical", "id": 15}
+      ,{"name": "Political", "id": 16}
+      ,{"name": "Romance", "id": 17}
+      ,{"name": "Saga", "id": 18}
+      ,{"name": "Satire", "id": 19}
+      ,{"name": "Science fiction", "id": 20}
+      ,{"name": "Social", "id": 21}
+      ,{"name": "Speculative", "id": 22}
+      ,{"name": "Thriller", "id": 23}
+      ,{"name": "Urban", "id": 24}
+      ,{"name": "Western", "id": 25}
+      ,{"name": "Biography", "id": 26}
+      ,{"name": "Dance", "id": 34}
+      ,{"name": "Disaster", "id": 35}
+      ,{"name": "Documentary", "id": 36}
+      ,{"name": "Erotic", "id": 37}
+      ,{"name": "Family", "id": 38}
+      ,{"name": "Found Footage", "id": 39}
+      ,{"name": "Independent", "id": 40}
+      ,{"name": "Legal", "id": 41}
+      ,{"name": "Martial Arts", "id": 42}
+      ,{"name": "Noir", "id": 43}
+      ,{"name": "Performance", "id": 44}
+      ,{"name": "Silent", "id": 45}
+      ,{"name": "Slasher", "id": 46}
+      ,{"name": "Sports", "id": 47}
+      ,{"name": "Spy", "id": 48}
+      ,{"name": "Superhero", "id": 49}
+      ,{"name": "Supernatural", "id": 50}
+      ,{"name": "Suspense", "id": 51}
+      ,{"name": "Teen", "id": 52}
+      ,{"name": "War", "id": 53}
+    ]
+  },
+  {
+    "header": "Video game genres",
+    "list": [
+      {"name": "Video game", "id": 32}
+    ]
+  },
+  {
+    "header": "Music genres",
+    "list": [
+      {"name": "Music", "id": 33}
+    ]
+  },
+  {
+    "header": "Film and television formats and genres",
+    "list": [
+      {"name": "Animation", "id": 27}
+      ,{"name": "Live-action scripted", "id": 28}
+      ,{"name": "Live-action unscripted", "id": 29}
+      ,{"name": "Other television-related topics", "id": 30}
+      ,{"name": "Other television-Short topics", "id": 31}
+    ]
+  }
+]

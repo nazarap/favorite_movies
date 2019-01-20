@@ -8,8 +8,22 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../dist')));
 
 // An api endpoint that returns a short list of items
-app.get('/api/getList', (req,res) => {
-  var list = ["item1", "item2", "item3"];
+app.get('/api/movies', (req,res) => {
+  var list = require('./../data/movies');
+  res.json(list);
+  console.log('Sent list of items');
+});
+
+// An api endpoint that returns a short list of items
+app.get('/api/genres', (req,res) => {
+  var list = require('./../data/genres');
+  res.json(list);
+  console.log('Sent list of items');
+});
+
+// An api endpoint that returns a short list of items
+app.get('/api/genres', (req,res) => {
+  var list = require('./../data/users');
   res.json(list);
   console.log('Sent list of items');
 });
