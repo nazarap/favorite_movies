@@ -1,7 +1,7 @@
 import React from 'react'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
-import { PageTitle } from '../styled'
+import { Avatar, PageTitle } from '../styled'
 import { connect } from 'react-redux'
 import { getMovies, createMovie } from '../actions/movies'
 import auth from './hoc/Auth'
@@ -42,6 +42,11 @@ class CreateContainer extends React.Component {
           className="create-page__content"
           elevation={1}>
           <PageTitle>Create</PageTitle>
+          <Avatar
+            className="create-page__avatar"
+            large
+            alt="Avatar"
+            src={this.state.img}/>
           <TextField
             className='create-page__input'
             label="Movie or serial name"

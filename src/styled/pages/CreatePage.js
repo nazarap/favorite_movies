@@ -21,5 +21,8 @@ export default styled(ContentPage)`
     &__btn {
       margin: 10px 0;
     }
+    &__avatar {
+      margin: auto auto 20px;
+    }
   }
 `
