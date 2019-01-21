@@ -6,7 +6,8 @@ import {
   requestData,
   loginError,
   addFavorite,
-  removeFavorite
+  removeFavorite,
+  addUser
 } from './../actions/users'
 
 const initialState = {
@@ -27,6 +28,9 @@ export default handleActions({
   ),
   [updateCurrentUser]: (state, action) => (
     {...state, current: action.payload, error: null, isFetching: false}
+  ),
+  [addUser]: (state, action) => (
+    {...state, list: [...state.list, action.payload]}
   ),
   [requestData]: (state, action) => (
     {...state, isFetching: true}

@@ -8,7 +8,7 @@ import { PageTitle, Link } from '../styled'
 import { login } from './../actions/users'
 import InfoMessage from './common/InfoMessage'
 
-class Login extends React.Component {
+class LoginContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -17,15 +17,18 @@ class Login extends React.Component {
     }
     this.typeInput = this.typeInput.bind(this)
   }
+
   typeInput(type, value) {
     this.setState({
       [type]: value
     })
   }
+
   render() {
     const { login, password } = this.state
     const loginUser = this.props.loginUser
     const error = this.props.error
+
     return (
       <div>
         <PageTitle>Login</PageTitle>
@@ -37,6 +40,7 @@ class Login extends React.Component {
         />
         <TextField
           className='login-page__input'
+          type="password"
           label="Password"
           variant="outlined"
           onChange={e => this.typeInput('password', e.target.value)}
@@ -67,11 +71,11 @@ class Login extends React.Component {
   }
 }
 
-Login.defaultProps = {
+LoginContainer.defaultProps = {
   error: false
 }
 
-Login.propTypes = {
+LoginContainer.propTypes = {
   error: PropTypes.bool
 }
 
@@ -85,4 +89,4 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer)

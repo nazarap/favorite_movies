@@ -12,7 +12,8 @@ export default styled(CenterPage)`
       margin: 10px 0;
     }
     &__button {
-      display: inline-block;
+      display: block;
+      margin: auto;
     }
     &__registration {
       margin: 10px 0;

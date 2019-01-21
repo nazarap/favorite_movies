@@ -1,2 +1,3 @@
 export const UPDATE_MOVIE_LIST = 'UPDATE_MOVIE_LIST'
+export const ADD_MOVIE = 'ADD_MOVIE'
 export const REQUEST_MOVIE_DATA = 'REQUEST_MOVIE_DATA'

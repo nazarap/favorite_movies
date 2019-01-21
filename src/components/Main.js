@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { getMovies } from '../actions/movies'
 import auth from './hoc/Auth'
 
-class Main extends React.Component {
+class MainContainer extends React.Component {
   constructor(props) {
     super(props)
 
@@ -49,11 +49,11 @@ class Main extends React.Component {
   }
 }
 
-Main.defaultProps = {
+MainContainer.defaultProps = {
   list: []
 }
 
-Main.propTypes = {
+MainContainer.propTypes = {
   list: PropTypes.array
 }
 
@@ -68,4 +68,4 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
-export default auth(connect(mapStateToProps, mapDispatchToProps)(Main))
+export default auth(connect(mapStateToProps, mapDispatchToProps)(MainContainer))

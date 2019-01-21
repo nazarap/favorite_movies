@@ -12,7 +12,7 @@ import { getMovies } from '../actions/movies'
 import auth from './hoc/Auth'
 import filterBy from './../helpers/filterBy'
 
-class Account extends React.Component {
+class AccountContainer extends React.Component {
   constructor(props) {
     super(props)
 
@@ -57,14 +57,14 @@ class Account extends React.Component {
   }
 }
 
-Account.defaultProps = {
+AccountContainer.defaultProps = {
   movies: [],
   personal: [],
   user: {},
   isFetching: false
 }
 
-Account.propTypes = {
+AccountContainer.propTypes = {
   movies: PropTypes.array,
   personal: PropTypes.array,
   user: PropTypes.object,
@@ -87,4 +87,4 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
-export default auth(connect(mapStateToProps, mapDispatchToProps)(Account))
+export default auth(connect(mapStateToProps, mapDispatchToProps)(AccountContainer))

@@ -6,10 +6,12 @@ import {
   REQUEST_USER_DATA,
   LOGIN_ERROR,
   ADD_FAVORITE,
-  REMOVE_FAVORITE
+  REMOVE_FAVORITE,
+  ADD_USER
 } from './../constants/userActions'
 import goTo from './../helpers/goTo'
 import session from './../helpers/session'
+import generate from './../helpers/generate'
 
 const addFavorite = createAction(ADD_FAVORITE)
 const removeFavorite = createAction(REMOVE_FAVORITE)
@@ -17,6 +19,7 @@ const updateCurrentUser = createAction(UPDATE_CURRENT_USER)
 const updateUserList = createAction(UPDATE_USER_LIST)
 const requestData = createAction(REQUEST_USER_DATA)
 const loginError = createAction(LOGIN_ERROR)
+const addUser = createAction(ADD_USER)
 const getUsers = () => {
   return (dispatch, getState) => {
     const { users: { list } } = getState()
@@ -62,6 +65,15 @@ const getUser = id => {
     }, id)
   }
 }
+const createUser = user => {
+  return dispatch => {
+    user.id = generate()
+    session.set(user.id)
+    dispatch(addUser(user))
+    dispatch(updateCurrentUser(user))
+    goTo('genres')
+  }
+}
 
 export {
   updateCurrentUser,
@@ -71,6 +83,8 @@ export {
   removeFavorite,
   loginError,
   getUsers,
+  addUser,
+  createUser,
   getUser,
   logout,
   login

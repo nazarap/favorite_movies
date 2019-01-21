@@ -8,6 +8,7 @@ export { default as ContentPage } from './pages/common/ContentPage'
 export { default as GenresPage } from './pages/GenresPage'
 export { default as AccountPage } from './pages/AccountPage'
 export { default as MainPage } from './pages/MainPage'
+export { default as CreatePage } from './pages/CreatePage'
 /**
  * Common Simple Components
  */

@@ -4,7 +4,7 @@ import MovieList from './common/Movies'
 import { connect } from 'react-redux'
 import { addFavorite, removeFavorite } from '../actions/users'
 
-const Movies = (props) => {
+const MoviesContainer = (props) => {
   const hasMovie = id => props.user.favoriteList.includes(id)
   const actionType = id => hasMovie(id) ? 'Remove' : 'Add'
   const action = ({ id }) => hasMovie(id) ? props.removeFavorite(id) : props.addFavorite(id)
@@ -16,11 +16,11 @@ const Movies = (props) => {
   )
 }
 
-Movies.defaultProps = {
+MoviesContainer.defaultProps = {
   user: {}
 }
 
-Movies.propTypes = {
+MoviesContainer.propTypes = {
   user: PropTypes.object
 }
 
@@ -37,4 +37,4 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Movies)
+export default connect(mapStateToProps, mapDispatchToProps)(MoviesContainer)

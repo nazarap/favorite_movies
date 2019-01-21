@@ -1,7 +1,8 @@
 import { handleActions } from 'redux-actions'
 import {
   updateMovieList,
-  requestData
+  requestData,
+  addMovie
 } from './../actions/movies'
 
 const initialState = {
@@ -15,5 +16,8 @@ export default handleActions({
   ),
   [requestData]: (state, action) => (
     {...state, isFetching: true}
+  ),
+  [addMovie]: (state, action) => (
+    {...state, list: [...state.list, action.payload]}
   ),
 }, initialState)
