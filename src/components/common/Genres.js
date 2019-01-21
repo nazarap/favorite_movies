@@ -21,7 +21,7 @@ const GenresGroup = props => {
             label={ genre.name }
             component="a"
             clickable={props.disable(genre, index) && _isFunction(props.onClick)}
-            onClick={bindCallback(props.onClick, genre, index)}
+            onClick={bindCallback(props.disable(genre, index) && props.onClick, genre, index)}
             onDelete={bindCallback(props.onDelete, genre, index)}
             key={genre.id}
           />

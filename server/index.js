@@ -4,33 +4,48 @@ const opn = require('opn');
 
 const app = express();
 
-// Serve the static files from the React app
 app.use(express.static(path.join(__dirname, '../dist')));
 
-// An api endpoint that returns a short list of items
 app.get('/api/movies', (req,res) => {
-  var list = require('./../data/movies');
+  let list = require('./../data/movies');
+  list = list.slice(1000, 1200);
   res.json(list);
-  console.log('Sent list of items');
 });
 
-// An api endpoint that returns a short list of items
 app.get('/api/genres', (req,res) => {
-  var list = require('./../data/genres');
+  const list = require('./../data/genres');
   res.json(list);
-  console.log('Sent list of items');
 });
 
-// An api endpoint that returns a short list of items
-app.get('/api/genres', (req,res) => {
-  var list = require('./../data/users');
+app.get('/api/users', (req,res) => {
+  const list = require('./../data/users');
   res.json(list);
-  console.log('Sent list of items');
 });
 
-// Handles any requests that don't match the ones above
+app.get('/api/user', (req,res) => {
+  const list = require('./../data/users');
+  const user = list.find(user => user.id === +req.query.id);
+  res.json({user});
+});
+
+app.post('/api/login', (req,res) => {
+  const list = require('./../data/users');
+  let body = "";
+  req.on('data', function (data) {
+    body += data;
+  });
+  req.on('end', function () {
+    let body2 = JSON.parse(body)
+    let user = list.find(function(user) {
+      return user.login === body2.login && user.password === body2.password
+    })
+    res.json({ user });
+  });
+});
+
+// Run react app
 app.get('*', (req,res) =>{
-  res.sendFile(path.join(__dirname+'/../dist/index.html'));
+  res.sendFile(path.join(__dirname + '/../dist/index.html'));
 });
 
 const port = process.env.PORT || 5000;

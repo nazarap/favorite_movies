@@ -2,21 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import Movies from './../../components/common/Movies'
+import Movies from './../../components/Movies'
 import { Users, Avatar, UserInfo } from './../../styled'
+import { connect } from 'react-redux'
+import { removePersonalGenre } from '../../actions/genres'
+import filterBy from '../../helpers/filterBy'
 
 class UserItems extends React.Component {
   constructor(props) {
     super(props)
 
-    this.tileData = [
-      { img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg', title: 'Title 1', author: 'Author 1'},
-      { img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg', title: 'Title 2', author: 'Author 2'},
-      { img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg', title: 'Title 3', author: 'Author 3'},
-      { img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg', title: 'Title 4', author: 'Author 4'},
-      { img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg', title: 'Title 5', author: 'Author 5'},
-      { img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg', title: 'Title 6', author: 'Author 6'},
-    ]
     this.state = {
       showMoreFlag: true
     }
@@ -32,6 +27,7 @@ class UserItems extends React.Component {
   render() {
     const { user } = this.props
     const { showMoreFlag } = this.state
+    const movies = filterBy(this.props.movies, user.favoriteList)
 
     return (
       <Users.Item>
@@ -57,8 +53,8 @@ class UserItems extends React.Component {
         </Users.Header>
         <Movies
           cols={4}
-          count={showMoreFlag ? 4 : this.tileData.length}
-          list={this.tileData}/>
+          count={showMoreFlag ? 4 : movies.length}
+          list={movies}/>
       </Users.Item>
     )
   }
@@ -72,4 +68,14 @@ UserItems.propTypes = {
   user: PropTypes.object
 }
 
-export default UserItems
+const mapStateToProps = state => ({
+  movies: state.movies.list
+})
+
+const mapDispatchToProps = dispatch => ({
+  removePersonalGenre: payload => {
+    dispatch(removePersonalGenre(payload))
+  },
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserItems)

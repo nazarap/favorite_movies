@@ -8,6 +8,7 @@ export default styled(ContentPage)`
       padding: 20px;
       box-sizing: border-box;
       margin: 0 50px 50px 50px;
+      text-align: left;
     }
   }
 `

@@ -1,50 +1,90 @@
 import React from 'react'
 import Paper from '@material-ui/core/Paper'
-import Movies from './../components/common/Movies'
+import Button from '@material-ui/core/Button'
+import Movies from './../components/Movies'
 import Genres from '../components/common/Genres'
-import _remove from "lodash/remove";
+import InfoMessage from './common/InfoMessage'
+import { Link } from '../styled'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { removePersonalGenre } from '../actions/genres'
+import { getMovies } from '../actions/movies'
+import auth from './hoc/Auth'
+import filterBy from './../helpers/filterBy'
 
-export default () => {
-  let mine = [
-    {"name": "Absurdist/surreal/whimsical", "id": 2}
-    ,{"name": "Action", "id": 3}
-    ,{"name": "Adventure", "id": 4}
-    ,{"name": "Comedy", "id": 5}
-    ,{"name": "Crime", "id": 6}
-    ,{"name": "Drama", "id": 7}
-    ,{"name": "Fantasy", "id": 8}
-    ,{"name": "Historical", "id": 9}
-    ,{"name": "Historical fiction", "id": 10}
-    ,{"name": "Horror", "id": 11}
-    ,{"name": "Magical realism", "id": 12}
-    ,{"name": "Mystery", "id": 13}
-    ,{"name": "Paranoid Fiction", "id": 14}
-    ,{"name": "Philosophical", "id": 15}
-    ,{"name": "Political", "id": 16}
-    ,{"name": "Romance", "id": 17}
-  ]
-  const movies = [
-    { img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg', title: 'Title 1', author: 'Author 1'},
-    { img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg', title: 'Title 2', author: 'Author 2'},
-    { img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg', title: 'Title 3', author: 'Author 3'},
-    { img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg', title: 'Title 4', author: 'Author 4'},
-    { img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg', title: 'Title 5', author: 'Author 5'},
-    { img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg', title: 'Title 6', author: 'Author 6'},
-  ]
-  const remove = genre => _remove(mine, {id: genre.id})
+class Account extends React.Component {
+  constructor(props) {
+    super(props)
 
-  return (
-    <div>
-      <Paper
-        className="acc-page__genres"
-        elevation={1}>
-        <Genres
-          list={mine}
-          onDelete={remove}
-          header='Your genres:'/>
-      </Paper>
-      <Movies
-        list={movies}/>
-    </div>
-  )
+    this.remove = this.remove.bind(this)
+  }
+
+  componentDidMount() {
+    this.props.getMovies()
+  }
+
+  remove(genre) {
+    this.props.removePersonalGenre(genre.id)
+  }
+
+  render() {
+    const user = this.props.user
+    const movies = filterBy(this.props.movies, user.favoriteList)
+
+    return (
+      <div>
+        <Paper
+          className="acc-page__genres"
+          elevation={1}>
+          <Genres
+            list={this.props.personal}
+            onDelete={this.remove}
+            header='Your genres:'/>
+          <Link
+            to='/genres'>
+            <Button
+              color="primary"
+            >Edit</Button>
+          </Link>
+        </Paper>
+        <InfoMessage
+          show={this.props.isFetching}
+          text="Loading..."/>
+        <Movies
+          list={movies}/>
+      </div>
+    )
+  }
 }
+
+Account.defaultProps = {
+  movies: [],
+  personal: [],
+  user: {},
+  isFetching: false
+}
+
+Account.propTypes = {
+  movies: PropTypes.array,
+  personal: PropTypes.array,
+  user: PropTypes.object,
+  isFetching: PropTypes.bool
+}
+
+const mapStateToProps = state => ({
+  movies: state.movies.list,
+  personal: state.genres.personal,
+  user: state.users.current,
+  isFetching: state.movies.isFetching
+})
+
+const mapDispatchToProps = dispatch => ({
+  removePersonalGenre: payload => {
+    dispatch(removePersonalGenre(payload))
+  },
+  getMovies: () => {
+    dispatch(getMovies())
+  },
+})
+
+export default auth(connect(mapStateToProps, mapDispatchToProps)(Account))

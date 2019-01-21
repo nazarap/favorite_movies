@@ -1,26 +1,71 @@
 import React from 'react'
-import Movies from './../components/common/Movies'
+import Movies from './../components/Movies'
 import TextField from '@material-ui/core/TextField'
+import InfoMessage from './common/InfoMessage'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { getMovies } from '../actions/movies'
+import auth from './hoc/Auth'
 
-export default () => {
-  const tileData = [
-    { img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg', title: 'Title 1', author: 'Author 1'},
-    { img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg', title: 'Title 2', author: 'Author 2'},
-    { img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg', title: 'Title 3', author: 'Author 3'},
-    { img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg', title: 'Title 4', author: 'Author 4'},
-    { img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg', title: 'Title 5', author: 'Author 5'},
-    { img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg', title: 'Title 6', author: 'Author 6'},
-  ]
-  return (
-    <div>
-      <TextField
-        className="main-page__search"
-        label="Type to search movies"
-        margin="normal"
-      />
-      <Movies
-        cols={4}
-        list={tileData}/>
-    </div>
-  )
+class Main extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state ={
+      search: ''
+    }
+    this.typeSearch = this.typeSearch.bind(this)
+  }
+
+  componentDidMount() {
+    this.props.getMovies()
+  }
+
+  typeSearch(value) {
+    this.setState({
+      search: value
+    })
+  }
+
+  render() {
+    const searchText = this.state.search.toUpperCase()
+    const movies = this.props.list.filter(movie => movie.title.toUpperCase().indexOf(searchText) > -1)
+    return (
+      <div>
+        <TextField
+          className="main-page__search"
+          label="Type to search movies"
+          margin="normal"
+          onChange={e => this.typeSearch(e.target.value)}
+        />
+        <InfoMessage
+          show={this.props.isFetching}
+          text="Loading..."/>
+        <Movies
+          cols={4}
+          list={movies}/>
+      </div>
+    )
+  }
 }
+
+Main.defaultProps = {
+  list: []
+}
+
+Main.propTypes = {
+  list: PropTypes.array
+}
+
+const mapStateToProps = state => ({
+  list: state.movies.list,
+  isFetching: state.movies.isFetching
+})
+
+const mapDispatchToProps = dispatch => ({
+  getMovies: () => {
+    dispatch(getMovies())
+  },
+})
+
+export default auth(connect(mapStateToProps, mapDispatchToProps)(Main))

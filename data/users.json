@@ -1,8 +1,19 @@
 [
   {
-    "fistName": "Nazar",
-    "lastName": "Oryschuk",
+    "id": 1,
+    "firstName": "User 1",
+    "lastName": "Last 1",
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScU5gBOi_kiRVEsdNJCFihVOIKkkyJR8C_0g7mlmiitbsWhrHg",
+      "favoriteList": [1001, 1004, 1006, 1007, 1009, 1012, 1015, 1017, 1133, 1134],
+    "login": "link",
+    "password": "link"
+  },
+  {
+    "id": 2,
+    "firstName": "User 2",
+    "lastName": "Last 2",
     "img": "https://material-ui.com/static/images/grid-list/vegetables.jpg",
+    "favoriteList": [1005, 1007, 1010, 1023, 1025, 1036, 1047, 1123],
     "login": "link",
     "password": "link"
   }

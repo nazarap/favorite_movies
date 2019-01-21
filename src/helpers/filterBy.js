@@ -1,0 +1,1 @@
+export default (list, ids) => list.filter(item => ids.includes(item.id))

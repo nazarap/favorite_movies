@@ -2,10 +2,13 @@ import React from 'react'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import { Header, Avatar, Link, UserInfo } from '../../styled'
+import { Header as StyledHeader, Avatar, Link, UserInfo } from '../../styled'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { logout } from '../../actions/users'
 
-export default () =>
-  <Header
+const Header = ({ user, logoutUser }) =>
+  <StyledHeader
     className="header">
     <Paper
       className="header__content"
@@ -43,20 +46,39 @@ export default () =>
             <Typography
               className="user-info__name"
               variant="h6"
-            >Nazar Oryshcuk
+            >{user.firstName} {user.lastName}
             </Typography>
             <Avatar
-              alt="Remy Sharp"
-              src="https://material-ui.com/static/images/avatar/1.jpg" />
+              alt={`${user.firstName} ${user.lastName}`}
+              src={user.img} />
           </UserInfo>
         </Link>
-        <Link
-          to='/login'>
-          <Button
-            className="header__bnt"
-            color="primary"
-          >logout</Button>
-        </Link>
+        <Button
+          className="header__bnt"
+          color="primary"
+          onClick={logoutUser}
+        >logout</Button>
       </section>
     </Paper>
-  </Header>
+  </StyledHeader>
+
+
+Header.defaultProps = {
+  user: {}
+}
+
+Header.propTypes = {
+  user: PropTypes.object
+}
+
+const mapStateToProps = state => ({
+  user: state.users.current
+})
+
+const mapDispatchToProps = dispatch => ({
+  logoutUser: () => {
+    dispatch(logout())
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

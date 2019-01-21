@@ -6,7 +6,7 @@ import MovieItem from './MovieItem'
 import _take from 'lodash/take'
 import { Movies } from './../../styled'
 
-const MovieList = ({ list, cols, count, ...props }) => {
+const MovieList = ({ list, cols, count, actionType, action, ...props }) => {
   const takeCount = count || list.length
 
   return (
@@ -21,7 +21,10 @@ const MovieList = ({ list, cols, count, ...props }) => {
         {
           _take(list, takeCount).map((movie, index) => (
             <GridListTile key={index}>
-              <MovieItem movie={movie}/>
+              <MovieItem
+                movie={movie}
+                actionType={actionType}
+                action={action}/>
             </GridListTile>
           ))
         }

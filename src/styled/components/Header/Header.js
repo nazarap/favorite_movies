@@ -20,7 +20,6 @@ export default styled.header`
       }
       &__bnt {
         margin: 0 10px;
-        height: 100%;
       }
       &__panel {
         display: flex;
